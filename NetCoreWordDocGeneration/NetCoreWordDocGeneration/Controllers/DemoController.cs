@@ -13,7 +13,7 @@ namespace NetCoreWordDocGeneration.Controllers
     {
         [HttpGet("Export")]
         [Produces("application/ms-word")]
-        public async Task<IActionResult> Export()
+        public IActionResult Export()
         {
             try
             {
@@ -23,7 +23,7 @@ namespace NetCoreWordDocGeneration.Controllers
             catch (Exception ex)
             {
                 //log the exception
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
     }

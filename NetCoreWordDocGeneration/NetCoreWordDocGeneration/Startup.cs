@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
@@ -43,7 +44,8 @@ namespace NetCoreWordDocGeneration
                 config.FormatterMappings.SetMediaTypeMappingForFormat(
                   "docx", MediaTypeHeaderValue.Parse("application/ms-word"));
 
-            }).AddJsonOptions(options =>
+            })
+                .AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -60,7 +62,7 @@ namespace NetCoreWordDocGeneration
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -69,7 +71,7 @@ namespace NetCoreWordDocGeneration
 
             app.UseCors("CorsPolicy");
 
-            app.UseMvc();
+            //IApplicationBuilder applicationBuilder = app.UseMvc();
 
             app.UseSwagger(c => { c.RouteTemplate = "api/swagger/{documentName}/swagger.json"; });
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("v1/swagger.json", "My App Api"); c.RoutePrefix = "api/swagger"; });

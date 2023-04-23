@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "dS6xMcff17FmUmkXUyEj5MMHV2xw0PTaIW6+ElcXkKk=",
+  "Source": "NetCoreWordDocGeneration",
+  "BasePath": "_content/NetCoreWordDocGeneration",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

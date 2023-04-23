@@ -89,7 +89,7 @@ namespace NetCoreWordDocGeneration.Util
                     body.Append(p);
 
 
-                    wordDoc.Close();
+                    wordDoc.Dispose();
 
 
                 }
